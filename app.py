@@ -215,3 +215,41 @@ with right:
 
 st.divider()
 
+# >>> KEKHASAN KAMI #3: NARASI REKOMENDASI OTOMATIS <<< 
+st.subheader("🧠 Narasi Rekomendasi Otomatis (Auto-Insight)") 
+
+
+if delta >= 5: 
+    rekomendasi = ( 
+        f"Skenario ini **direkomendasikan**. Kombinasi Iklan Rp{iklan_slider} Jt dan " 
+        f"Diskon {diskon_slider}% berpotensi menaikkan keuntungan sebesar **{delta:.2f} Juta** " 
+        f"dibanding kondisi saat ini. Pertimbangkan untuk menerapkan kebijakan ini secara bertahap " 
+        f"sambil memantau {paling_sensitif.lower()} sebagai indikator utama." 
+    ) 
+    st.success(rekomendasi) 
+elif delta <= -5: 
+    rekomendasi = ( 
+        f"⚠️ Skenario ini **berisiko menurunkan keuntungan** sebesar **{abs(delta):.2f} Juta**. " 
+        f"Disarankan untuk **tidak** menerapkan kombinasi ini, atau melakukan uji coba kecil " 
+        f"(pilot test) terlebih dahulu sebelum rollout penuh." 
+    ) 
+    st.error(rekomendasi) 
+else: 
+    rekomendasi = ( 
+        "Skenario ini menghasilkan dampak yang **relatif netral**. Tidak ada alasan kuat untuk " 
+        "mengubah kebijakan saat ini kecuali ada pertimbangan non-finansial lain " 
+        "(misalnya brand awareness atau loyalitas pelanggan)." 
+    ) 
+    st.warning(rekomendasi) 
+
+
+st.caption( 
+    f"Catatan: Harga kompetitor saat ini diasumsikan **{harga_kompetitor}** — " 
+    "faktor ini tidak dimodelkan secara numerik, namun sebaiknya jadi bahan pertimbangan kualitatif manajer." 
+) 
+
+st.divider() 
+st.caption( 
+    "💡 Dibangun untuk Praktikum Pemodelan & Simulasi — Minggu 14 (Simulator Interaktif & Analisis What-If). " 
+    "Model: Regresi Linear sederhana (Digital Twin), Engine: model.predict() real-time via Streamlit." 
+) 
